@@ -4,13 +4,14 @@ import app from "./server/express.js"
 
 mongoose.Promise = global.Promise
 
-mongoose.connect(config.mongoUri, { 
+mongoose.connect(config.mongoUri, {
+    dbName: 'skeleton', 
     useNewUrlParser: true,
     //useCreateIndex: true,
     useUnifiedTopology: true
 })
 .then(() => {
-    console.log('Connected to database!')
+    console.log(`Connected to database: ${config.mongoUri}`)
 })
 
 mongoose.connection.on('error', (error) => {
