@@ -1,14 +1,11 @@
 import { useState } from "react";
-import { useForm } from 'react-hook-form'
 import "./multiple.css";
 
 export default function Multiple() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
-    check1: false,
-    check2: false
+    message: ""
   });
 
   const handleChange = (event) => {
@@ -17,16 +14,10 @@ export default function Multiple() {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleCheck = (event) => {
-    console.log(prevFormData)
-    const {name, checked } = event.target
-    setFormData((prevFormData) => ({...prevFormData, [name]: !checked}))
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(
-      `Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}, Check1: ${formData.check1}, Check2: ${formData.check2}`
+      `Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`
     );
   };
 
@@ -43,30 +34,6 @@ export default function Multiple() {
         value={formData.name}
         onChange={handleChange}
       />
-
-    <input
-        type="checkbox"
-        id="check1"
-        className="multiple__input"
-        name="check1"
-        checked={formData.check1}
-        onChange={handleChange}
-      />
-      <label className="multiple__input" htmlFor="check1">
-        Check1
-      </label>
-
-      <input
-        type="checkbox"
-        id="check2"
-        className="multiple__input"
-        name="check2"
-        checked={formData.check2}
-        onChange={handleCheck}
-      />
-      <label className="multiple__input" htmlFor="check2">
-        Check2
-      </label>
 
       <label className="multiple__text" htmlFor="email">
         Email:
